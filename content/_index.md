@@ -1,5 +1,3 @@
 ---
 title: Gallery
 ---
-
-## Datasource: Myself
