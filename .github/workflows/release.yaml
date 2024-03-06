@@ -1,0 +1,49 @@
+name: Release
+
+on:
+  push:
+    branches:
+      - main
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: false
+
+permissions:
+  id-token: write      # Required for aws-actions/configure-aws-credentials
+  contents: read       # Required for actions/checkout
+
+jobs:
+  release:
+    runs-on: ubuntu-22.04
+    steps:
+    - name: Read .hugoversion
+      id: hugo-version
+      run: echo "HUGO_VERSION=$(cat .hugoversion)" >> "${GITHUB_OUTPUT}"
+
+    - name: Setup Hugo
+      uses: peaceiris/actions-hugo@v2
+      with:
+        hugo-version: '${{ steps.hugo-version.outputs.HUGO_VERSION }}'
+        extended: true
+
+    - name: Checkout
+      uses: actions/checkout@v4
+
+    - name: Build
+      run: ./build.sh
+
+    - name: Configure AWS Credentials
+      uses: aws-actions/configure-aws-credentials@v4
+      with:
+        role-to-assume: arn:aws:iam::803205869942:role/github-actions-astro-garden
+        aws-region: us-east-1
+
+    - name: Copy files to the S3 bucket
+      run: |
+      
+        aws s3 sync --delete public/ s3://astro.garden
+
+    - name: Invalidate CloudFront Distribution
+      run: |
+        aws cloudfront create-invalidation --distribution-id E2FP6HPAKZ3T26 --paths "/*"

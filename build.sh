@@ -9,13 +9,16 @@ mkdir -p ./static/gallery
 mkdir -p .build-cache
 
 # renovate: datasource=github-releases depName=USA-RedDragon/astro.garden-images
-GALLERY_VERSION=11
+GALLERY_VERSION=22
 
 if [ ! -f .build-cache/gallery-${GALLERY_VERSION}.tar.gz ]; then
   curl -fSsL https://github.com/USA-RedDragon/astro.garden-images/releases/download/${GALLERY_VERSION}/gallery.tar.gz -o .build-cache/gallery-${GALLERY_VERSION}.tar.gz
 fi
 tar -xzf .build-cache/gallery-${GALLERY_VERSION}.tar.gz -C ./static/gallery
-rm -rf ./static/gallery/my-data ./static/gallery/other-data ./static/gallery/my-data.json ./static/gallery/other-data.json
+mv ./static/gallery/generated/my-data.json data/my.json
+mv ./static/gallery/generated/other-data.json data/other.json
 
 # We have a clean gallery directory
 python generate.py
+
+hugo --gc --minify

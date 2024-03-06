@@ -29,4 +29,8 @@ def main():
     generate("other")
 
 if __name__ == "__main__":
-    main()
+    try:
+        main()
+    except Exception as e:
+        logging.error(e)
+        exit(1)
