@@ -1,0 +1,40 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Favicons -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/favicon/android-chrome-192x192.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+    <link rel="manifest" href="/favicon/site.webmanifest">
+    <link rel="mask-icon" href="/favicon/safari-pinned-tab.svg" color="#5bbad5">
+    <link rel="shortcut icon" href="/favicon/favicon.ico">
+    <meta name="apple-mobile-web-app-title" content="Astro Garden">
+    <meta name="application-name" content="Astro Garden">
+    <meta name="msapplication-TileColor" content="#101010">
+    <meta name="msapplication-TileImage" content="/favicon//mstile-144x144.png">
+    <meta name="theme-color" content="#101010">
+
+    <!-- Starfield -->
+    <script type="module" src="/js/starfield.js"></script>
+    <link rel="stylesheet" href="/css/starfield.css">
+
+    <link rel="stylesheet" href="/css/app.css">
+    <script type="module" src="/js/lazyload.js"></script>
+
+    <title>{{ or .Title .Site.Title }}{{ if ne .Kind "home" }} | {{ .CurrentSection.Title }}{{ end }}</title>
+  </head>
+  <body>
+    <canvas id="starfield" ref="starfield"></canvas>
+    <div id="app">
+      {{ partial "header.html" . }}
+      {{ block "header" . }}{{ end }}
+      <div id="main">
+        {{ block "main" . }}{{ end }}
+      </div>
+    </div>
+  </body>
+</html>

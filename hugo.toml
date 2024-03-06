@@ -1,3 +1,7 @@
-baseURL = 'https://example.org/'
+baseURL = 'https://astro.garden/'
 languageCode = 'en-us'
-title = 'My New Hugo Site'
+title = 'Astro Garden'
+disableKinds = ['taxonomy', 'term']
+
+[markup.goldmark.renderer]
+hardWraps = true

@@ -1,0 +1,18 @@
+{{ define "header" }}
+<div class="header">
+  <h1>{{ .Site.Title }}</h1>
+  <img src="/png/logo.png" alt="Logo" width="128" height="128" style="margin: -20px;">
+  <h6> Astrophotography by <a target="_blank" href="https://jacob.mcswain.dev">Jacob McSwain</a></h6>
+  <div id="nav">
+    <h2>
+      {{ $isHome := eq .Kind "home" }}
+      {{ $activeLinkClasses := "router-link-active router-link-exact-active" }}
+      <a href="/" class="{{- if $isHome }}{{$activeLinkClasses}}{{end}}" aria-current="page">Gallery</a>&nbsp;|
+      {{ $isAbout := eq .Section "about" }}
+      <a href="/about" class="{{- if $isAbout }}{{$activeLinkClasses}}{{end}}">About</a>&nbsp;|
+      {{ $isEquipment := eq .Section "equipment" }}
+      <a href="/equipment" class="{{- if $isEquipment }}{{$activeLinkClasses}}{{end}}">Equipment</a>&nbsp;
+    </h2>
+  </div>
+</div>
+{{ end }}
