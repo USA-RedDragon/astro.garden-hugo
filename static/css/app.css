@@ -5,6 +5,11 @@
   color: #c3c3c3;
 }
 
+.header a:has(h1) {
+  color: inherit;
+  text-decoration: inherit;
+}
+
 #main {
     text-align: center;
     margin-left: auto;
