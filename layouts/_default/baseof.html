@@ -25,10 +25,12 @@
     <link rel="stylesheet" href="/css/app.css">
     <script type="module" src="/js/lazyload.js"></script>
 
-    <title>{{ or .Title .Site.Title }}{{ if ne .Kind "home" }} | {{ .CurrentSection.Title }}{{ end }}</title>
+    <title>{{ or .Title .Site.Title }}{{ if ne .Kind "home" }} | {{ .Site.Title }}{{ end }}</title>
+
+    {{ template "_internal/google_analytics.html" . }}
   </head>
   <body>
-    <canvas id="starfield" ref="starfield"></canvas>
+    <canvas id="starfield"></canvas>
     <div id="app">
       {{ partial "header.html" . }}
       {{ block "header" . }}{{ end }}

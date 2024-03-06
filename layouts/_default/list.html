@@ -1,2 +1,11 @@
-{{ define "header" }}
+{{ define "main" }}
+  {{ partial "page.html" . }}
+
+  <div class="gallery">
+    <section class="photos">
+  {{ range $.Site.Data.my }}
+    {{ partial "gallery_image.html" . }}
+  {{ end }}
+  </section>
+  </div>
 {{ end }}

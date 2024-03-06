@@ -5,3 +5,7 @@ disableKinds = ['taxonomy', 'term']
 
 [markup.goldmark.renderer]
 hardWraps = true
+
+[services]
+  [services.googleAnalytics]
+    ID = 'G-380W2ZBVPH'
