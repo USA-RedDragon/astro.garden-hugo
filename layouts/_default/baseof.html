@@ -25,7 +25,14 @@
     <link rel="stylesheet" href="/css/app.css">
     <script type="module" src="/js/lazyload.js"></script>
 
-    <title>{{ or .Title .Site.Title }}{{ if ne .Kind "home" }} | {{ .Site.Title }}{{ end }}</title>
+    <title>
+    {{if eq .Title "404 Page not found"}}
+      Lost in space...
+    {{else}}
+      {{ or .Title .Site.Title }}
+    {{end}}
+    {{ if ne .Kind "home" }} | {{ .Site.Title }}{{ end }}
+    </title>
 
     {{ template "_internal/google_analytics.html" . }}
   </head>
