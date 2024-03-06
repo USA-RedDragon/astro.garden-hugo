@@ -118,9 +118,6 @@ a
   left: 0;
   width: 100% !important;
   height: auto !important;
-}
-
-.photo_container .loaded img {
   -webkit-transition: all 4s ease;
   -moz-transition: all 4s ease;
   -o-transition: all 4s ease;
