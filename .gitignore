@@ -1,4 +1,5 @@
 .hugo_build.lock
 public/
-static/gallery
-content/gallery
+static/gallery/
+content/gallery/
+.build-cache/
