@@ -17,6 +17,9 @@ jobs:
   release:
     runs-on: ubuntu-22.04
     steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+
     - name: Read .hugoversion
       id: hugo-version
       run: echo "HUGO_VERSION=$(cat .hugoversion)" >> "${GITHUB_OUTPUT}"
@@ -26,9 +29,6 @@ jobs:
       with:
         hugo-version: '${{ steps.hugo-version.outputs.HUGO_VERSION }}'
         extended: true
-
-    - name: Checkout
-      uses: actions/checkout@v4
 
     - name: Build
       run: ./build.sh
